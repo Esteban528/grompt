@@ -61,3 +61,29 @@ The default config file is generated on `$HOME/.config/grompt.json`
   // End. The parser will always append c:reset automatically.
 ]
 ```
+
+# Popular shell's integration
+
+- **bash**:
+
+```bash
+echo "export PS1='\$(grompt)'" >> ~/.bashrc && source ~/.bashrc
+```
+
+- **zsh**:
+```bash
+grep -qxF "PROMPT='$(grompt)'" ~/.zshrc || echo "PROMPT='\$(grompt)'" >> ~/.zshrc && source ~/.zshrc
+```
+
+- **fish**
+```bash
+grep -qxF "function fish_prompt" ~/.config/fish/functions/fish_prompt.fish 2>/dev/null || \
+echo -e "function fish_prompt\n    grompt\nend" > ~/.config/fish/functions/fish_prompt.fish
+
+fish -c "source ~/.config/fish/functions/fish_prompt.fish"
+```
+
+- **dash**
+```bash
+grep -qxF "PS1='$(grompt)'" ~/.profile 2>/dev/null || echo "PS1='\$(grompt)'" >> ~/.profile && . ~/.profile
+```
