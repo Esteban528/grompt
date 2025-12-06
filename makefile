@@ -9,7 +9,10 @@ run:
 	$(SILENT) run .
 
 build:
-	$(SILENT) build -ldflags "-s -w" -o $(BUILD_DIR)/$(PROGRAM) .  
+	$(SILENT) build -ldflags "-s -w" -o $(BUILD_DIR)/$(PROGRAM)_light .
 
 build-static:
-	env CGO_ENABLED=0 $(SILENT) build -o $(BUILD_DIR)/$(PROGRAM) -a -ldflags '-extldflags "-static"' .
+	env CGO_ENABLED=0 $(SILENT) build -o $(BUILD_DIR)/$(PROGRAM)_static -a -ldflags '-extldflags "-static"' .
+
+release:
+	make build build-static
