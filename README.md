@@ -18,7 +18,7 @@ curl -sSL https://raw.githubusercontent.com/Esteban528/grompt/refs/heads/master/
 
 # Config
 
-The default config path is `$HOME/.config/grompt.json`
+The default config file is generated on `$HOME/.config/grompt.json`
 
 - [Colors](./colors.go)
 
