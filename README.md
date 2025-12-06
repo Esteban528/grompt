@@ -12,12 +12,52 @@ If u want to clone the repo and build it, you can use the [makefile](./makefile)
 
 This command installs automatically grompt in `~/.local/bin`
 
-```bash 
+```bash
 curl -sSL https://raw.githubusercontent.com/Esteban528/grompt/refs/heads/master/install.sh | bash
 ```
 
 # Config
 
-```json 
-TO-DO
+The default config path is `$HOME/.config/grompt.json`
+
+- [Colors](./colors.go)
+
+```jsonc
+[
+  // The config is a JSON array. Each element is processed in order.
+  // Everything shown here is just documentation.
+
+  // 1. Literal strings — printed exactly:
+  "@",
+
+  // 2. Environment variables — prefix with $:
+  "$USER",
+
+  // 3. Internal variables — use ${name}:
+  // Available: dir, hostname, git_branch
+  "${dir}",
+  "${hostname}",
+  "${git_branch}",
+
+  // 4. Colors — c:*, fg:*, bg:*
+  "fg:green",
+  "bg:red",
+  "c:bold",
+
+  // 5. Truecolor — fg:#RRGGBB or bg:#RRGGBB
+  "fg:#88CCFF",
+  "bg:#112233",
+
+  // 6. exec:command — insert command output
+  "exec:date +%H:%M",
+
+  // 7. Some conditionals:
+  // If repo is dirty (any change), print inner array:
+  { "git_status_noclean": ["fg:red", "X"] },
+
+  // If repo is clean, print inner array:
+  { "git_status_clean": ["fg:green", "✔"] },
+
+  // End. The parser will always append c:reset automatically.
+]
 ```
