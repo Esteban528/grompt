@@ -146,7 +146,9 @@ func main() {
 				"$USER",
 				"@",
 				"fg:green",
-				"${dir}"
+				"${dir}",
+				":",
+				" "
 			]
 		`
 		os.WriteFile(configPath, []byte(content), 0644)
